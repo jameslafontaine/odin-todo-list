@@ -1,0 +1,297 @@
+/* ==========================================================================
+   Boilerplate CSS file for base styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Base styles (resets, normalisations, typography)
+   ========================================================================== */
+/* #region */
+/* ------------------------------
+    Reset / Normalise
+   ------------------------------ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+
+    /* Debug */
+    outline: 2px solid red;
+    font-size: 1.5rem;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* ------------------------------
+    Base Styles
+    ------------------------------ */
+body {
+    font-family: system-ui, sans-serif;
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Dark mode overrides for base styles go here only if they affect global elements, e.g., body background and text: */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: var(--surface);
+        color: var(--text-color-dark);
+    }
+}
+
+/* ------------------------------
+    Typography
+    ------------------------------ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    margin: 0 0 var(--spacing-sm);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: var(--font-size-xl);
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: var(--font-size-lg);
+}
+
+p {
+    margin: 0 0 var(--spacing-md);
+}
+
+
+
+
+/* #endregion */
+
+
+/* || More Resets */
+/* 
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: 2px solid red;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+*/
+
+/* || Tables */
+
+/*
+
+html {
+    font-family: sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+td,
+th {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px 20px;
+}
+
+th {
+    background-color: rgb(235, 235, 235);
+}
+
+td {
+    text-align: center;
+}
+
+tr:nth-child(even) td {
+    background-color: rgb(250, 250, 250);
+}
+
+tr:nth-child(odd) td {
+    background-color: rgb(245, 245, 245);
+}
+
+caption {
+    padding: 10px;
+}
+*/

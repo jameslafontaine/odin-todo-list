@@ -1,0 +1,175 @@
+/* ==========================================================================
+   Boilerplate CSS file for setting up design tokens
+   ========================================================================== */
+/* #region */
+
+/* ------------------------------
+   Importing a locally installed font
+   ------------------------------ */
+@font-face {
+   font-family: 'Aileron';
+   src: url('../assets/fonts/Aileron-Regular.woff2') format('woff2'),
+      url('../assets/fonts/Aileron-Regular.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+}
+
+/* -------------------------------------------------------------------------
+   Example class structure
+   ------------------------------------------------------------------------- */
+.example-class {
+   /* Layout/position (display, grid, flex, position) */
+
+   /* Box model (margin, padding, width, height) */
+
+   /* Typography (font-*, line-height, color) */
+
+   /* Visual (background, border, box-shadow, border-radius) */
+
+   /* Misc/animations */
+}
+
+
+/* ==========================================================================
+   Variables / Design tokens
+   ========================================================================== */
+/* #region */
+/* Example of a design tokens / variables section */
+:root {
+
+   /* ------------------------------
+       Spacing / Layout
+       ------------------------------ */
+   --spacing-xxs: 4px;
+   --spacing-xs: 8px;
+   --spacing-sm: 12px;
+   --spacing-md: 16px;
+   --spacing-lg: 24px;
+   --spacing-xl: 32px;
+   --spacing-2xl: 48px;
+   --spacing-3xl: 64px;
+
+   --border-radius-sm: 4px;
+   --border-radius-md: 8px;
+   --border-radius-lg: 12px;
+   --border-radius-xl: 20px;
+   --border-radius-2xl: 32px;
+   --border-radius-3xl: 64px;
+   --border-radius-full: 100%;
+
+   --z-index-dropdown: 1000;
+   --z-index-modal: 1100;
+   --z-index-tooltip: 1200;
+
+   /* ------------------------------
+       Typography
+       ------------------------------ */
+   --font-family-base: 'Helvetica', sans-serif;
+   --font-family-heading: 'Helvetica', sans-serif;
+
+   --font-size-xs: 1rem;
+   --font-size-sm: 1.15rem;
+   --font-size-md: 1.3rem;
+   --font-size-lg: 1.5rem;
+   --font-size-xl: 1.75rem;
+   --font-size-2xl: 2rem;
+   --font-size-3xl: 2.5rem;
+
+   --font-weight-regular: 400;
+   --font-weight-medium: 500;
+   --font-weight-bold: 700;
+
+   --line-height-sm: 1.4;
+   --line-height-md: 1.6;
+   --line-height-lg: 1.8;
+
+   /* ------------------------------
+       Color Palette
+       ------------------------------ */
+   --color-primary: #006157;
+   --color-primary-light: #008075;
+   --color-primary-dark: #004b3f;
+
+   --color-secondary: #642cde;
+   --color-secondary-light: #7e4cf2;
+   --color-secondary-dark: #3a0e8f;
+
+   --color-accent: #7E1DC3;
+   --color-accent-light: #a13ddf;
+   --color-accent-dark: #5a1299;
+
+   --color-neutral-100: #ffffff;
+   --color-neutral-200: #f2f2f2;
+   --color-neutral-300: #d9d9d9;
+   --color-neutral-400: #a6a6a6;
+   --color-neutral-500: #666666;
+   --color-neutral-600: #393f4d;
+   --color-neutral-700: #1a1a1a;
+
+   --color-error: #e74c3c;
+   --color-success: #2ecc71;
+   --color-warning: #f39c12;
+
+   /* || Primary brand */
+   --color-primary-blue: #1992d4;
+   --color-primary-dark: #0066cc;
+
+   /* || Backgrounds */
+   --color-background-main: #e2e8f0;
+   --color-background-card: #ffffff;
+
+   /* || Accent / highlights */
+   --color-accent-orange: #f0b429;
+   --color-accent-blue: #1992d4;
+   --color-accent-blue-hover: #51b0e4;
+   --color-accent-neutral-hover: #dfdede;
+
+   /* || Text */
+   --color-text-dark: #000000;
+   --color-text-medium: #636363;
+   --color-text-light: #FFFFFF;
+
+   /* || Notifications / status (optional) */
+   --color-notification: #f0b429;
+   --color-success: #10b981;
+
+   /* ------------------------------
+       Shadows
+       ------------------------------ */
+   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+   --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------------------------------------------------------------
+   Dark mode handling 
+   ------------------------------------------------------------------------- */
+:root {
+   font-family: 'Times New Roman', Times, serif;
+   --border-btn: 1px solid rgb(36, 36, 36);
+   --color-base-bg: rgb(240, 240, 240);
+   --color-base-text: rgb(18, 18, 18);
+   --color-btn-bg: rgb(220, 220, 220);
+   --theme-name: "light";
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+      --border-btn: 1px solid rgb(220, 220, 220);
+      --color-base-bg: rgb(18, 18, 18);
+      --color-base-text: rgb(240, 240, 240);
+      --color-btn-bg: rgb(36, 36, 36);
+      --theme-name: "dark";
+
+      background-color: var(--color-base-bg);
+      color: var(--color-base-text);
+   }
+
+   button {
+      border: var(--border-btn);
+      background-color: var(--color-btn-bg);
+   }
+}
+
+/* #endregion */
