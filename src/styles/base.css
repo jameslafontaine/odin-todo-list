@@ -1,7 +1,7 @@
 /* ==========================================================================
    Boilerplate CSS file for base styles
    ========================================================================== */
-
+@import './tokens.css';
 /* ==========================================================================
    Base styles (resets, normalisations, typography)
    ========================================================================== */
@@ -18,6 +18,7 @@
     /* Debug */
     outline: 2px solid red;
     font-size: 1.5rem;
+
 }
 
 html,
@@ -46,7 +47,7 @@ select {
     Base Styles
     ------------------------------ */
 body {
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-family-base);
     font-size: var(--font-size-base);
     line-height: 1.5;
     background-color: var(--color-bg);

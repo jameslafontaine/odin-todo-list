@@ -65,7 +65,7 @@
    /* ------------------------------
        Typography
        ------------------------------ */
-   --font-family-base: 'Helvetica', sans-serif;
+   --font-family-base: 'Aileron', system-ui, sans-serif;
    --font-family-heading: 'Helvetica', sans-serif;
 
    --font-size-xs: 1rem;

@@ -1,3 +1,22 @@
+/**
+ * @fileoverview Generic table utilities for rendering, managing, and interacting with HTML tables.
+ *
+ * Responsibilities:
+ * - Ensure table structure (colgroup, thead, tbody)
+ * - Render table headers and rows dynamically from JS objects
+ * - Support sorting, filtering, pagination, column visibility, and row striping
+ * - Provide row/cell manipulation helpers
+ *
+ * Example:
+ *   const tableAPI = initTable("libraryTable", myDataArray);
+ *   tableAPI.sort("pages");
+ *   tableAPI.filter(item => item.read);
+ *
+ * @module TableUtils
+ */
+
+import { createElement, clearChildren } from './UIUtils.js';
+
 // =================
 // Constants
 // =================
@@ -5,47 +24,21 @@ const DEFAULT_TABLE_CLASS = "library-table";
 const ROWS_PER_PAGE = 5;
 
 // =================
-// Utility Functions
-// =================
-
-// -----------
-// DOM Helpers
-// -----------
-function createElement(tag, classNames = []) {
-    const el = document.createElement(tag);
-    classNames.forEach(cls => el.classList.add(cls));
-    return el;
-}
-
-function clearChildren(parent) {
-    while (parent.firstChild) parent.removeChild(parent.firstChild);
-}
-
-// =================
 // Table Rendering Functions
 // =================
 
-// -----------
-// Ensure Table Structure
-// -----------
 function ensureTableStructure(table) {
     if (!table.querySelector("colgroup")) table.insertBefore(createElement("colgroup"), table.firstChild);
     if (!table.querySelector("thead")) table.appendChild(createElement("thead"));
     if (!table.querySelector("tbody")) table.appendChild(createElement("tbody"));
 }
 
-// -----------
-// Column Group
-// -----------
 function insertColgroup(table, obj) {
     const colgroup = table.querySelector("colgroup");
     clearChildren(colgroup);
     Object.keys(obj).forEach(() => colgroup.appendChild(document.createElement("col")));
 }
 
-// -----------
-// Table Header
-// -----------
 function addTableHeader(obj, thead, onSort) {
     clearChildren(thead);
     const row = createElement("tr", ["library-head-row"]);
@@ -56,53 +49,42 @@ function addTableHeader(obj, thead, onSort) {
         th.textContent = key;
         th.style.cursor = "pointer";
 
-        if (onSort) {
-            th.addEventListener("click", () => onSort(key));
-        }
-
+        if (onSort) th.addEventListener("click", () => onSort(key));
         row.appendChild(th);
     });
 
     thead.appendChild(row);
 }
 
-// -----------
-// Table Rows
-// -----------
 function addTableRow(obj, tbody) {
     const row = createElement("tr", ["library-record"]);
-    Object.values(obj).forEach(value => {
-        const td = createElement("td", ["library-cell"]);
+    if (obj.id !== undefined) row.dataset.id = obj.id;
+
+    Object.entries(obj).forEach(([key, value]) => {
+        const td = createElement("td", [`${key}-cell`, "library-cell"]);
         td.textContent = value;
         row.appendChild(td);
     });
+
     tbody.appendChild(row);
 }
 
 function removeTableRow(id) {
     const recordToRemove = document.querySelector(`[data-id="${id}"]`);
-    recordToRemove.remove();
+    if (recordToRemove) recordToRemove.remove();
 }
-
-// -----------
-// Table Cells
-// -----------
 
 function updateTableCell(obj, colName) {
     const rowToUpdate = document.querySelector(`[data-id="${obj.id}"]`);
-    rowToUpdate.querySelector(`.${colName}-cell`).textContent = obj[`${colName}`];
+    if (!rowToUpdate) return;
+    const cell = rowToUpdate.querySelector(`.${colName}-cell`);
+    if (cell) cell.textContent = obj[colName];
 }
 
-// -----------
-// Multiple Rows
-// -----------
 function addRowsFromArray(arr, tbody) {
     arr.forEach(obj => addTableRow(obj, tbody));
 }
 
-// -----------
-// Clear Table Body
-// -----------
 function clearTableBody(table) {
     const tbody = table.querySelector("tbody");
     clearChildren(tbody);
@@ -112,9 +94,6 @@ function clearTableBody(table) {
 // Table Features
 // =================
 
-// -----------
-// Sorting
-// -----------
 function sortArrayByKey(arr, key, ascending = true) {
     return arr.slice().sort((a, b) => {
         if (a[key] < b[key]) return ascending ? -1 : 1;
@@ -123,24 +102,15 @@ function sortArrayByKey(arr, key, ascending = true) {
     });
 }
 
-// -----------
-// Filtering
-// -----------
 function filterArray(arr, predicate) {
     return arr.filter(predicate);
 }
 
-// -----------
-// Pagination
-// -----------
 function paginateArray(arr, page = 1, perPage = ROWS_PER_PAGE) {
     const start = (page - 1) * perPage;
     return arr.slice(start, start + perPage);
 }
 
-// -----------
-// Toggle Column Visibility
-// -----------
 function toggleColumn(table, colIndex, visible) {
     Array.from(table.rows).forEach(row => {
         const cell = row.cells[colIndex];
@@ -148,9 +118,6 @@ function toggleColumn(table, colIndex, visible) {
     });
 }
 
-// -----------
-// Row Striping
-// -----------
 function stripeRows(tbody) {
     Array.from(tbody.rows).forEach((row, idx) => {
         row.classList.toggle("odd-row", idx % 2 === 0);
@@ -161,9 +128,10 @@ function stripeRows(tbody) {
 // =================
 // Main Execution / Initialization
 // =================
+
 function initTable(tableId, dataArray) {
     const table = document.getElementById(tableId);
-    if (!table || !dataArray || !dataArray.length) return;
+    if (!table || !dataArray?.length) return;
 
     table.classList.add(DEFAULT_TABLE_CLASS);
     ensureTableStructure(table);
@@ -173,7 +141,7 @@ function initTable(tableId, dataArray) {
 
     insertColgroup(table, dataArray[0]);
 
-    let currentData = dataArray.slice();
+    let currentData = [...dataArray];
     let ascending = true;
 
     const render = (data) => {
@@ -199,23 +167,16 @@ function initTable(tableId, dataArray) {
     };
 }
 
-// =================
-// Example Usage
-// =================
-/*
-const myBooks = [
-    { title: "The Hobbit", author: "J.R.R. Tolkien", pages: 295, read: false },
-    { title: "To Kill a Mockingbird", author: "Harper Lee", pages: 320, read: true },
-    { title: "1984", author: "George Orwell", pages: 328, read: false },
-    { title: "Dune", author: "Frank Herbert", pages: 412, read: true },
-    { title: "Fahrenheit 451", author: "Ray Bradbury", pages: 158, read: false },
-];
-
-const tableAPI = initTable("libraryTable", myBooks);
-
-// Example interactions:
-// tableAPI.sort("pages");
-// tableAPI.filter(book => book.read === true);
-// tableAPI.paginate(2, 2);
-// tableAPI.toggleColumn(3, false);
-*/
+export {
+    initTable,
+    clearTableBody,
+    addTableRow,
+    addRowsFromArray,
+    removeTableRow,
+    updateTableCell,
+    sortArrayByKey,
+    filterArray,
+    paginateArray,
+    toggleColumn,
+    stripeRows,
+};

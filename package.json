@@ -60,6 +60,7 @@
     "cssnano-preset-default": "^7.0.10",
     "cssnano-utils": "^5.0.1",
     "csso": "^5.0.5",
+    "date-fns": "^4.1.0",
     "debug": "^2.6.9",
     "default-browser": "^5.2.1",
     "default-browser-id": "^5.0.0",
