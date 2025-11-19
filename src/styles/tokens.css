@@ -36,11 +36,10 @@
    ========================================================================== */
 /* #region */
 /* Example of a design tokens / variables section */
+/* ===============================
+   1. Spacing & Layout
+   =============================== */
 :root {
-
-   /* ------------------------------
-       Spacing / Layout
-       ------------------------------ */
    --spacing-xxs: 4px;
    --spacing-xs: 8px;
    --spacing-sm: 12px;
@@ -58,15 +57,17 @@
    --border-radius-3xl: 64px;
    --border-radius-full: 100%;
 
-   --z-index-dropdown: 1000;
-   --z-index-modal: 1100;
-   --z-index-tooltip: 1200;
+   --z-dropdown: 1000;
+   --z-modal: 1100;
+   --z-tooltip: 1200;
+}
 
-   /* ------------------------------
-       Typography
-       ------------------------------ */
-   --font-family-base: 'Aileron', system-ui, sans-serif;
-   --font-family-heading: 'Helvetica', sans-serif;
+/* ===============================
+   2. Typography
+   =============================== */
+:root {
+   --font-family-base: 'Aileron', sans-serif;
+   --font-family-heading: 'Aileron', sans-serif;
 
    --font-size-xs: 1rem;
    --font-size-sm: 1.15rem;
@@ -83,92 +84,110 @@
    --line-height-sm: 1.4;
    --line-height-md: 1.6;
    --line-height-lg: 1.8;
+}
 
-   /* ------------------------------
-       Color Palette
-       ------------------------------ */
-   --color-primary: #006157;
-   --color-primary-light: #008075;
-   --color-primary-dark: #004b3f;
+/* ===============================
+   3. Color Palette (Core Colors)
+   =============================== */
+:root {
+   /* Backgrounds */
+   --color-bg-main: #e2e8f0;
+   --color-bg-card: #ffffff;
+   --color-bg-accent: #51b0e4;
 
-   --color-secondary: #642cde;
-   --color-secondary-light: #7e4cf2;
-   --color-secondary-dark: #3a0e8f;
+   /* Text */
+   --color-text-primary: #000000;
+   --color-text-secondary: #636363;
+   --color-text-inverse: #ffffff;
 
-   --color-accent: #7E1DC3;
-   --color-accent-light: #a13ddf;
-   --color-accent-dark: #5a1299;
+   /* Brand / Buttons */
+   --color-btn-primary: #006157;
+   --color-btn-accent: #1992d4;
 
-   --color-neutral-100: #ffffff;
-   --color-neutral-200: #f2f2f2;
-   --color-neutral-300: #d9d9d9;
-   --color-neutral-400: #a6a6a6;
-   --color-neutral-500: #666666;
-   --color-neutral-600: #393f4d;
-   --color-neutral-700: #1a1a1a;
+   /* States */
+   --color-state-success: #22c55e;
+   --color-state-error: #ef4444;
+   --color-state-warning: #f59e0b;
 
-   --color-error: #e74c3c;
-   --color-success: #2ecc71;
-   --color-warning: #f39c12;
+   /* Borders / lines */
+   --color-border-default: #d9d9d9;
+   --color-border-muted: #a6a6a6;
 
-   /* || Primary brand */
-   --color-primary-blue: #1992d4;
-   --color-primary-dark: #0066cc;
-
-   /* || Backgrounds */
-   --color-background-main: #e2e8f0;
-   --color-background-card: #ffffff;
-
-   /* || Accent / highlights */
-   --color-accent-orange: #f0b429;
-   --color-accent-blue: #1992d4;
-   --color-accent-blue-hover: #51b0e4;
-   --color-accent-neutral-hover: #dfdede;
-
-   /* || Text */
-   --color-text-dark: #000000;
-   --color-text-medium: #636363;
-   --color-text-light: #FFFFFF;
-
-   /* || Notifications / status (optional) */
-   --color-notification: #f0b429;
-   --color-success: #10b981;
-
-   /* ------------------------------
-       Shadows
-       ------------------------------ */
+   /* Shadows */
    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* -------------------------------------------------------------------------
-   Dark mode handling 
-   ------------------------------------------------------------------------- */
-:root {
-   font-family: 'Times New Roman', Times, serif;
-   --border-btn: 1px solid rgb(36, 36, 36);
-   --color-base-bg: rgb(240, 240, 240);
-   --color-base-text: rgb(18, 18, 18);
-   --color-btn-bg: rgb(220, 220, 220);
-   --theme-name: "light";
+/* ===============================
+   4. Dark Mode
+   =============================== */
+
+/* in JS: document.documentElement.setAttribute('data-theme', 'dark'); or 'light' */
+
+:root[data-theme='dark'] {
+   /* Backgrounds */
+   --color-bg-main: #0f172a;
+   --color-bg-card: #1e293b;
+   --color-bg-accent: #51b0e4;
+
+   /* Text */
+   --color-text-primary: #ffffff;
+   --color-text-secondary: #d1d5db;
+   --color-text-inverse: #000000;
+
+   /* Brand / Buttons */
+   --color-btn-primary: #33b8a8;
+   --color-btn-accent: #1992d4;
+   --color-btn-hover: #293850;
+
+   /* States */
+   --color-state-success: #22c55e;
+   --color-state-error: #ef4444;
+   --color-state-warning: #f59e0b;
+
+   /* Borders / lines */
+   --color-border-default: #334155;
+   --color-border-muted: #475569;
+
+   /* Shadows (more visible on dark) */
+   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+   --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
 }
 
+
+/* use system preference as initial default */
 @media (prefers-color-scheme: dark) {
    :root {
-      --border-btn: 1px solid rgb(220, 220, 220);
-      --color-base-bg: rgb(18, 18, 18);
-      --color-base-text: rgb(240, 240, 240);
-      --color-btn-bg: rgb(36, 36, 36);
-      --theme-name: "dark";
+      /* Backgrounds */
+      --color-bg-main: #0f172a;
+      --color-bg-card: #1e293b;
+      --color-bg-accent: #51b0e4;
 
-      background-color: var(--color-base-bg);
-      color: var(--color-base-text);
-   }
+      /* Text */
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #d1d5db;
+      --color-text-inverse: #000000;
 
-   button {
-      border: var(--border-btn);
-      background-color: var(--color-btn-bg);
+      /* Brand / Buttons */
+      --color-btn-primary: #33b8a8;
+      --color-btn-accent: #1992d4;
+      --color-btn-hover: #293850;
+
+      /* States */
+      --color-state-success: #22c55e;
+      --color-state-error: #ef4444;
+      --color-state-warning: #f59e0b;
+
+      /* Borders / lines */
+      --color-border-default: #334155;
+      --color-border-muted: #475569;
+
+      /* Shadows (more visible on dark) */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
    }
 }
 

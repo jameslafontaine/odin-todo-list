@@ -1,23 +1,51 @@
 /* ==========================================================================
    Boilerplate CSS file for layout styles
    ========================================================================== */
-@import './tokens.css';
+
 /* ==========================================================================
    Layout (page-level grids, flex containers, major page regions like header, footer, sidebar)
    ========================================================================== */
 /* #region */
 
-/* ------------------------------
-    Header
-    ------------------------------ */
+body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    min-height: 100vh;
+}
 
 /* ------------------------------
     Sidebar
     ------------------------------ */
+.sidebar {
+    grid-column: 1 / 2;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    position: sticky;
+    top: 0;
+
+    padding: var(--spacing-lg) var(--spacing-lg);
+    height: 100vh;
+    /* Fill viewport vertically */
+    overflow-y: auto;
+    /* Allow internal vertical scroll */
+
+    text-align: center;
+
+    background-color: var(--color-bg-main);
+    box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.3);
+}
 
 /* ------------------------------
-    Content
+    To-do List Container
     ------------------------------ */
+.todo-list-container {
+    grid-column: 2 / 4;
+
+    padding: calc(var(--spacing-3xl)*2);
+
+    background-color: var(--color-bg-card);
+}
 
 /* Media queries for responsive layout: go here, because the layout is what changes at breakpoints: */
 @media (max-width: 768px) {

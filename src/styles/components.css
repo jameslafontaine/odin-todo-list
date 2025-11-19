@@ -1,11 +1,244 @@
 /* ==========================================================================
    Boilerplate CSS file for component styles
    ========================================================================== */
-@import './tokens.css';
+
 /* ==========================================================================
    Components (cards, buttons, inputs, navbar items, self-contained reusable UI pieces, etc.)
    ========================================================================== */
 /* #region */
+
+/* Sidebar */
+
+.icon {
+    color: var(--color-text-primary);
+    width: 3rem;
+    fill: currentColor;
+    stroke-width: 0.01;
+    stroke: currentColor;
+}
+
+.branding {
+    display: flex;
+
+    align-items: center;
+
+    color: var(--color-text-primary);
+
+    gap: var(--spacing-2xl);
+
+    margin-bottom: var(--spacing-2xl);
+
+}
+
+.logo {
+    width: 8rem;
+    height: 8rem;
+    fill: currentColor;
+    stroke-width: 0.01;
+    stroke: currentColor;
+}
+
+
+.brand-name {
+    font-size: calc(1.3*var(--font-size-3xl));
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.sidebar-projects-heading {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+}
+
+.sidebar-project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    width: 100%;
+    padding: var(--spacing-sm);
+    background: none;
+    border: none;
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    color: var(--color-text-primary);
+    cursor: pointer;
+}
+
+.project-btn:hover {
+    background-color: var(--color-bg-card);
+    border-radius: var(--border-radius-md);
+}
+
+.create-project-btn {
+    margin-top: var(--spacing-2xl);
+    padding: var(--spacing-md);
+    width: 100%;
+    color: var(--color-text-on-accent);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.create-project-btn:hover {
+    background-color: var(--color-bg-card);
+}
+
+/* To Do List */
+
+.todo-list>li {
+    margin-bottom: var(--spacing-lg);
+
+}
+
+.todo-list .icon {
+    color: var(--color-text-secondary);
+}
+
+.button-container {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+
+}
+
+.checkmark-btn {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.todo-btn {
+    flex-grow: 0.5;
+    text-align: left;
+}
+
+
+.checkmark-btn:hover,
+.todo-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: var(--color-bg-main);
+}
+
+.todo-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+    border-radius: var(--border-radius-lg);
+}
+
+.checkmark-btn:hover {
+    border-radius: var(--border-radius-full);
+}
+
+.todo-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: 50%;
+    padding: var(--spacing-xs);
+    background: none;
+    border: none;
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border-muted);
+}
+
+
+.todo-btn .icon {
+    width: 4rem;
+    height: 4rem;
+}
+
+.todo-info {
+    margin-left: var(--spacing-xl);
+    margin-top: var(--spacing-sm);
+}
+
+.complete-btn,
+.edit-btn,
+.delete-btn {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-text-secondary);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+.todo-priority {
+    display: inline;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    margin-right: var(--spacing-xs);
+}
+
+
+.priority-urgent {
+    background-color: var(--color-state-error);
+}
+
+.priority-important {
+    background-color: var(--color-state-warning);
+}
+
+.priority-low {
+    background-color: var(--color-state-success);
+}
+
+.todo-due-date {
+    display: inline;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-bg-main);
+}
+
+
+.todo-description {
+    font-size: var(--font-size-md);
+    color: var(--color-text-primary);
+    margin: var(--spacing-sm) 0;
+}
+
+.create-todo-btn {
+    margin-top: var(--spacing-3xl);
+    padding: var(--spacing-md);
+    width: 25%;
+    background-color: var(--color-bg-card);
+    color: var(--color-text-on-accent);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.create-todo-btn:hover {
+    background-color: var(--color-bg-main);
+}
+
 
 /* Component-level media queries live here if the component needs to adapt at different screen sizes: */
 .card {
