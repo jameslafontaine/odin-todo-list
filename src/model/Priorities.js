@@ -18,7 +18,7 @@
 
 
 export const Priorities = Object.freeze({
-    URGENT: "URGENT",
-    IMPORTANT: "IMPORTANT",
-    LOW: "LOW",
+    URGENT: "Urgent",
+    IMPORTANT: "Important",
+    LOW: "Low",
 });

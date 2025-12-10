@@ -1,11 +1,13 @@
 /* ==========================================================================
-   Boilerplate CSS file for component styles
-   ========================================================================== */
-
-/* ==========================================================================
    Components (cards, buttons, inputs, navbar items, self-contained reusable UI pieces, etc.)
    ========================================================================== */
 /* #region */
+
+/* General */
+
+button:hover {
+    transition: background-color 0.2s ease;
+}
 
 /* Sidebar */
 
@@ -21,13 +23,13 @@
     display: flex;
 
     align-items: center;
-
     color: var(--color-text-primary);
 
     gap: var(--spacing-2xl);
 
-    margin-bottom: var(--spacing-2xl);
-
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 2px solid var(--color-border-muted);
+    margin-bottom: var(--spacing-lg);
 }
 
 .logo {
@@ -38,9 +40,8 @@
     stroke: currentColor;
 }
 
-
 .brand-name {
-    font-size: calc(1.3*var(--font-size-3xl));
+    font-size: calc(1.6 * var(--font-size-3xl));
     color: var(--color-text-primary);
     margin: 0;
 }
@@ -54,6 +55,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-border-muted);
 }
 
 .project-btn {
@@ -70,7 +73,8 @@
     cursor: pointer;
 }
 
-.project-btn:hover {
+.project-btn:hover,
+.project--selected {
     background-color: var(--color-bg-card);
     border-radius: var(--border-radius-md);
 }
@@ -93,86 +97,102 @@
 
 /* To Do List */
 
-.todo-list>li {
-    margin-bottom: var(--spacing-lg);
+.main-project-heading-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
 
+.main-project-heading-container button {
+    width: 4rem;
+    height: 4rem;
+}
+
+.main-project-heading {
+    margin: 0;
+    margin-right: var(--spacing-lg);
+    font-size: calc(1.3 * var(--font-size-3xl));
+}
+
+.todo-list > li {
+    margin-bottom: var(--spacing-lg);
 }
 
 .todo-list .icon {
     color: var(--color-text-secondary);
 }
 
-.button-container {
+.todo-btn-container {
     display: flex;
     gap: var(--spacing-md);
+    align-items: center;
     margin-top: var(--spacing-md);
+}
 
+.todo-btn-container .todo-btn svg {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.todo-btn-container .edit-btn svg,
+.todo-btn-container .delete-btn svg {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.todo-btn-container .edit-btn {
+    margin-right: calc(-1 * var(--spacing-sm));
 }
 
 .checkmark-btn {
-    width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    align-self: center;
     cursor: pointer;
+}
+
+.checkmark-btn svg {
+    width: 5rem;
+    height: 5rem;
+    fill: var(--color-text-secondary);
 }
 
 .todo-btn {
     flex-grow: 0.5;
     text-align: left;
-}
-
-
-.checkmark-btn:hover,
-.todo-btn:hover,
-.edit-btn:hover,
-.delete-btn:hover {
-    background-color: var(--color-bg-main);
-}
-
-.todo-btn:hover,
-.edit-btn:hover,
-.delete-btn:hover {
-    border-radius: var(--border-radius-lg);
-}
-
-.checkmark-btn:hover {
-    border-radius: var(--border-radius-full);
-}
-
-.todo-btn {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: var(--spacing-sm);
     width: 50%;
     padding: var(--spacing-xs);
     background: none;
     border: none;
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     font-weight: bold;
     color: var(--color-text-primary);
     cursor: pointer;
-    align-items: center;
     border-bottom: 1px solid var(--color-border-muted);
 }
 
-
-.todo-btn .icon {
-    width: 4rem;
-    height: 4rem;
+/* Only apply hover effect if button has an SVG (meaning it has a description) */
+.todo-btn:has(svg):hover {
+    background-color: var(--color-bg-main);
+    border-radius: var(--border-radius-xl);
 }
 
-.todo-info {
-    margin-left: var(--spacing-xl);
-    margin-top: var(--spacing-sm);
-}
-
-.complete-btn,
 .edit-btn,
-.delete-btn {
-    margin-top: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-md);
+.delete-btn,
+.star-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: var(--spacing-xs);
     color: var(--color-text-secondary);
     border: none;
     border-radius: var(--border-radius-md);
@@ -181,7 +201,27 @@
     cursor: pointer;
 }
 
+.star-btn:hover,
+.checkmark-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: var(--color-bg-main);
+}
 
+.star-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+    border-radius: var(--border-radius-xl);
+}
+
+.checkmark-btn:hover {
+    border-radius: var(--border-radius-full);
+}
+
+.todo-info {
+    margin-left: calc(1.5 * var(--spacing-3xl));
+    margin-top: var(--spacing-sm);
+}
 
 .todo-priority {
     display: inline;
@@ -191,7 +231,6 @@
     border-radius: var(--border-radius-md);
     margin-right: var(--spacing-xs);
 }
-
 
 .priority-urgent {
     background-color: var(--color-state-error);
@@ -215,22 +254,32 @@
     background-color: var(--color-bg-main);
 }
 
-
 .todo-description {
+    max-height: 0;
+
+    overflow: hidden;
     font-size: var(--font-size-md);
     color: var(--color-text-primary);
-    margin: var(--spacing-sm) 0;
+    margin: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-sm);
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    font-size: var(--font-size-xs);
+}
+
+.todo-description.expanded {
+    max-height: calc(var(--spacing-3xl) * 3);
+    padding: var(--spacing-sm) 0;
 }
 
 .create-todo-btn {
     margin-top: var(--spacing-3xl);
+    margin-left: var(--spacing-2xl);
     padding: var(--spacing-md);
-    width: 25%;
+    width: 20%;
     background-color: var(--color-bg-card);
     color: var(--color-text-on-accent);
     border: none;
     border-radius: var(--border-radius-md);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     font-weight: bold;
     cursor: pointer;
 }
@@ -239,6 +288,157 @@
     background-color: var(--color-bg-main);
 }
 
+/* Dialog Styles */
+
+dialog {
+    border: none;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--color-bg-card);
+    color: var(--color-text-primary);
+    padding: var(--spacing-2xl);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    min-width: 300px;
+    width: 90%;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog h2 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-primary);
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-row label {
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-primary);
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-md);
+    font-family: inherit;
+}
+
+.form-row textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    outline: none;
+    border-color: var(--color-text-secondary);
+    box-shadow: 0 0 0 2px rgba(100, 150, 255, 0.2);
+}
+
+.form-row input:-webkit-autofill,
+.form-row input:-webkit-autofill:hover,
+.form-row input:-webkit-autofill:focus,
+.form-row input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--color-bg-main) inset !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+}
+
+.form-row input:-webkit-autofill {
+    -webkit-transition: background-color 5000s ease-in-out 0s;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.cancel-button,
+.submit-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    margin-top: var(--spacing-md);
+    margin-right: var(--spacing-sm);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-button {
+    background-color: var(--color-bg-accent);
+    color: var(--color-text-on-accent);
+}
+
+.submit-button:hover {
+    background-color: var(--color-state-success);
+}
+
+.cancel-button {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+}
+
+.cancel-button:hover {
+    background-color: var(--color-state-error);
+    color: var(--color-text-on-accent);
+}
+
+/* Make dialogs the positioning context for absolute children */
+dialog {
+    position: relative; /* important */
+    padding-right: 5rem;
+    padding-top: 3rem;
+}
+
+/* Floating circular X button at top-right of dialog */
+.cancel-button {
+    position: absolute;
+    top: 0.25rem; /* distance from top edge of dialog */
+    right: 0.5rem; /* distance from right edge */
+    width: var(--spacing-2xl);
+    height: var(--spacing-2xl);
+    border-radius: var(--border-radius-full);
+    border: none;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.cancel-button:hover {
+    background-color: var(--color-state-error);
+    color: var(--color-text-on-accent);
+}
+
+.cancel-button::before {
+    content: "×";
+    font-weight: 700;
+    font-size: 2.25rem;
+    line-height: 1; /* remove extra line-height space */
+    display: flex; /* make the pseudo-element a flex container */
+    align-items: center; /* vertically center the "×" */
+    justify-content: center; /* horizontally center (optional, but safe) */
+    transform: translateY(-2%); /* tiny upward nudge if still slightly low */
+}
 
 /* Component-level media queries live here if the component needs to adapt at different screen sizes: */
 .card {

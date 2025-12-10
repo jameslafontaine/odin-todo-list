@@ -23,9 +23,9 @@ window.DEBUG = {
     projectManager,
 };
 
-import { initApp } from './app.js';
+import { initApp } from "./controller.js";
 import "./styles.js";
 
 console.log("🚀 Webpack Template Running!");
 
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener("DOMContentLoaded", initApp);

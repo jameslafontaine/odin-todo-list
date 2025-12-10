@@ -15,15 +15,15 @@
 export const UIUtils = {
     show(selector) {
         const el = document.querySelector(selector);
-        if (el) el.style.display = '';
+        if (el) el.style.display = "";
     },
     hide(selector) {
         const el = document.querySelector(selector);
-        if (el) el.style.display = 'none';
+        if (el) el.style.display = "none";
     },
     toggle(selector) {
         const el = document.querySelector(selector);
-        if (el) el.style.display = (el.style.display === 'none') ? '' : 'none';
+        if (el) el.style.display = el.style.display === "none" ? "" : "none";
     },
     bindEvent(selector, eventType, callback) {
         const el = document.querySelector(selector);
@@ -31,16 +31,44 @@ export const UIUtils = {
     },
     createElement(tag, classNames = [], textContent = "") {
         const el = document.createElement(tag);
-        classNames.forEach(cls => el.classList.add(cls));
+
+        // Normalize input
+        const classes = Array.isArray(classNames) ? classNames : classNames ? [classNames] : [];
+
+        classes.forEach((cls) => el.classList.add(cls));
         el.textContent = textContent;
         return el;
     },
+    createElementFromHTML(htmlString) {
+        const template = document.createElement("template");
+        template.innerHTML = htmlString.trim();
+        return template.content.firstChild;
+    },
     createClickableButton(classNames = [], textContent = "", onClick) {
-        const btn = createElement("button", classNames, textContent)
+        const btn = createElement("button", classNames, textContent);
         btn.addEventListener("click", onClick);
         return btn;
     },
     clearChildren(parent) {
         while (parent.firstChild) parent.removeChild(parent.firstChild);
-    }
+    },
+    createSVGFromSpriteSheet(classNames = [], symbolId) {
+        const SVG_NS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(SVG_NS, "svg");
+        // Normalize: accept "icon" or ["icon"]
+        if (typeof classNames === "string") {
+            classNames = [classNames];
+        }
+
+        if (Array.isArray(classNames)) {
+            classNames.forEach((cls) => svg.classList.add(cls));
+        }
+        svg.setAttribute("viewBox", "0 0 24 24");
+
+        const use = document.createElementNS(SVG_NS, "use");
+        use.setAttribute("href", symbolId); // or "xlink:href" if you support older browsers
+        svg.appendChild(use);
+
+        return svg;
+    },
 };

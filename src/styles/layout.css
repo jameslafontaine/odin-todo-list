@@ -37,9 +37,9 @@ body {
 }
 
 /* ------------------------------
-    To-do List Container
+    Main container
     ------------------------------ */
-.todo-list-container {
+.main-container {
     grid-column: 2 / 4;
 
     padding: calc(var(--spacing-3xl)*2);
